@@ -1,0 +1,21 @@
+[
+    {
+        "classe": "Mid1",
+        "connected_classes": [
+            "ModelClassA",
+            "VueClassB"
+        ],
+        "properties": [
+            {
+                "id_property": "Coucou",
+                "type": "int",
+                "direction": null
+            },
+            {
+                "id_property": "toto",
+                "type": "int",
+                "direction": null
+            }
+        ]
+    }
+]

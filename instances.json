@@ -1,0 +1,74 @@
+[
+  {
+    "id_interne": "1",
+    "id_externe": "100",
+    "classe": "ModelClassA",
+    "type_bloc": "Model",
+    "properties": [
+      {
+        "id_property": "prop1",
+        "type": "int",
+        "direction": "in"
+      },
+      {
+        "id_property": "prop2",
+        "type": "int",
+        "direction": "out"
+      }
+    ]
+  },
+  {
+    "id_interne": "2",
+    "id_externe": "101",
+    "classe": "ModelClassA",
+    "type_bloc": "Model",
+    "properties": [
+      {
+        "id_property": "prop1",
+        "type": "int",
+        "direction": "in"
+      },
+      {
+        "id_property": "prop2",
+        "type": "int",
+        "direction": "out"
+      }
+    ]
+  },
+  {
+    "id_interne": "1",
+    "id_externe": "100",
+    "classe": "VueClassB",
+    "type_bloc": "Vue",
+    "properties": [
+      {
+        "id_property": "prop1",
+        "type": "int",
+        "direction": "in"
+      },
+      {
+        "id_property": "prop2",
+        "type": "int",
+        "direction": "out"
+      }
+    ]
+  },
+  {
+    "id_interne": "2",
+    "id_externe": "101",
+    "classe": "VueClassB",
+    "type_bloc": "Vue",
+    "properties": [
+      {
+        "id_property": "prop1",
+        "type": "int",
+        "direction": "in"
+      },
+      {
+        "id_property": "prop2",
+        "type": "int",
+        "direction": "out"
+      }
+    ]
+  }
+]
