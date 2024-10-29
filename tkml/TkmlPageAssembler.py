@@ -81,19 +81,37 @@ class TkmlPageAssembler:
     
     def layout_widget(self, widget, element, layout):
         if layout == 'grid':
-            row = int(element.attrib.get('row', 0))
-            column = int(element.attrib.get('column', 0))
-            rowspan = int(element.attrib.get('rowspan', 1))
-            colspan = int(element.attrib.get('colspan', 1))
-            sticky = element.attrib.get('sticky', '')
-            widget.grid(row=row, column=column, rowspan=rowspan, columnspan=colspan, sticky=sticky, padx=5, pady=5)
+            self.apply_grid_layout(widget, element)
+        elif layout == 'place':
+            self.apply_place_layout(widget, element)
         else:
-            fill = element.attrib.get('fill', None)
-            expand = element.attrib.get('expand', 'False').lower() == 'true'
-            if fill:
-                widget.pack(fill=fill, expand=expand, padx=5, pady=5)
-            else:
-                widget.pack(padx=5, pady=5)
+            self.apply_pack_layout(widget, element)
+
+    def apply_grid_layout(self, widget, element):
+        row = int(element.attrib.get('row', 0))
+        column = int(element.attrib.get('column', 0))
+        rowspan = int(element.attrib.get('rowspan', 1))
+        colspan = int(element.attrib.get('colspan', 1))
+        sticky = element.attrib.get('sticky', '')
+        widget.grid(row=row, column=column, rowspan=rowspan, columnspan=colspan, sticky=sticky, padx=5, pady=5)
+
+    def apply_place_layout(self, widget, element):
+        x = int(element.attrib.get('x', 0))
+        y = int(element.attrib.get('y', 0))
+        width = element.attrib.get('width', None)
+        height = element.attrib.get('height', None)
+        relx = float(element.attrib.get('relx', 0))
+        rely = float(element.attrib.get('rely', 0))
+        widget.place(x=x, y=y, width=width, height=height, relx=relx, rely=rely)
+
+    def apply_pack_layout(self, widget, element):
+        fill = element.attrib.get('fill', None)
+        expand = element.attrib.get('expand', 'False').lower() == 'true'
+        side = element.attrib.get('side', None)
+        if fill or expand or side:
+            widget.pack(fill=fill, expand=expand, side=side, padx=5, pady=5)
+        else:
+            widget.pack(padx=5, pady=5)
 
     def update_widget(self, widget, var_name):
         widget.config(text=self.get_or_create_variable(var_name).get())
