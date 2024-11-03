@@ -23,7 +23,7 @@ class WidgetResolver:
             TextWidget(pageAssember)
         ]
 
-    def resolve(self,  element : ET.Element, parent : tk.Tk | tk.Toplevel | tk.Frame):
+    def resolve(self,  element : ET.Element, parent : tk.Tk):
         for widget in self.widgets:
             if widget.validate(element):
                 return widget.create(element, parent)

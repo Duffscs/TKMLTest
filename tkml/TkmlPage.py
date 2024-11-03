@@ -27,7 +27,4 @@ class TkmlPage:
     def close(self):
         self.root.destroy()
         self.root.quit()
-
-    def getComponent(self, name):
-        return self.named_widgets.get(name, None)
         

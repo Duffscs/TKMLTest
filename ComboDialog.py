@@ -9,11 +9,11 @@ class DialogResult(Enum):
 
 class ComboDialog(TkmlPage):
 
-    def __init__(self, items, title="Choix de l'option", text="Sélectionnez une option:", selected_index=0, **kwargs):
+    def __init__(self, items, title="Choix de l'option", text="Sélectionnez une option:", selected_index=0, transform=None, **kwargs):
         super().__init__(**kwargs)
-        self.cbValues = ArrayVar(value=items)
+        self.cbValues = ArrayVar(value=items, transform=transform)
         self.selected_index = tk.IntVar(value=selected_index)
-        self.selected_item = tk.StringVar(value=items[selected_index])
+        self.selected_item = tk.StringVar(value=self.cbValues.get()[selected_index])
         self.title = tk.StringVar(value=title)
         self.text = tk.StringVar(value=text)
         self.onCancel = lambda: None

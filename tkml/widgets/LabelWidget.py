@@ -5,6 +5,6 @@ import xml.etree.ElementTree as ET
 class LabelWidget(IWidget):
     name = 'label'
 
-    def create(self, element : ET.Element, parent : tk.Tk | tk.Toplevel | tk.Frame):
-        text = self.pageAssembler.resolve_template(element.attrib.get('text', ''))
+    def create(self, element : ET.Element, parent : tk.Tk):
+        text = self.pageAssembler.resolve_template(element.get('text', ''))
         return tk.Label(parent, text=text)

@@ -26,22 +26,22 @@ class ArrayVar(tk.Variable):
 
     def get(self):
         """Returns the list of values."""
+        return list(super().get())
+    
+    def get_inner(self):
+        """Returns the list of inner values."""
         return self.innerData
     
-    def get_transformed(self):
-        """Returns the list of transformed values."""
-        return list(super().get())
-
     def append(self, item):
         """Appends an item to the list."""
-        current_list = self.get_transformed()
+        current_list = self.get()
         self.innerData.append(item)
         current_list.append(self.transform(item))
         super().set(current_list)
 
     def remove(self, item):
         """Removes an item from the list."""
-        current_list = self.get_transformed()
+        current_list = self.get()
         if item in current_list:
             self.innerData.remove(item)
             current_list.remove(self.transform(item))
@@ -49,7 +49,7 @@ class ArrayVar(tk.Variable):
 
     def pop(self, index=-1):
         """Removes and returns an item from the list at the specified index."""
-        current_list = self.get_transformed()
+        current_list = self.get()
         item = self.innerData.pop(index)
         current_list.pop(index)
         super().set(current_list)
@@ -62,7 +62,7 @@ class ArrayVar(tk.Variable):
 
     def insert(self, index, item):
         """Inserts an item at a specified index."""
-        current_list = self.get_transformed()
+        current_list = self.get()
         self.innerData.insert(index, item)
         current_list.insert(index, self.transform(item))
         super().set(current_list)
@@ -73,14 +73,14 @@ class ArrayVar(tk.Variable):
 
     def sort(self, reverse=False):
         """Sorts the list."""
-        current_list = self.get_transformed()
+        current_list = self.get()
         self.innerData.sort(reverse=reverse)
         current_list = [self.transform(x) for x in self.innerData]
         super().set(current_list)
 
     def reverse(self):
         """Reverses the list."""
-        current_list = self.get_transformed()
+        current_list = self.get()
         self.innerData.reverse()
         current_list.reverse()
         super().set(current_list)
@@ -91,14 +91,14 @@ class ArrayVar(tk.Variable):
 
     def __setitem__(self, index, value):
         """Allows you to modify an element via array_var[index] = value."""
-        current_list = self.get_transformed()
+        current_list = self.get()
         self.innerData[index] = value
         current_list[index] = self.transform(value)
         super().set(current_list)
 
     def __delitem__(self, index):
         """Allows you to delete an element via del array_var[index]."""
-        current_list = self.get_transformed()
+        current_list = self.get()
         del self.innerData[index]
         del current_list[index]
         super().set(current_list)

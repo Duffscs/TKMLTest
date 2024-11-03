@@ -12,5 +12,5 @@ class IWidget:
             raise NotImplementedError("La propriété name doit être définie dans la classe dérivée {}.".format(self.__class__.__name__))
         return element.tag.lower() == self.name
     
-    def create(self, element : ET.Element, parent : tk.Tk | tk.Toplevel | tk.Frame):
+    def create(self, element : ET.Element, parent : tk.Tk):
         raise NotImplementedError("La méthode create doit être implémentée dans la classe dérivée.")

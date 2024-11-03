@@ -1,3 +1,4 @@
+from ComboDialog import ComboDialog
 from DataManager import DataManager
 from tkml import ArrayVar, TkmlPage
 from tkinter import messagebox
@@ -9,7 +10,7 @@ class ClassManager(TkmlPage):
         self.data_manager = data_manager
         self.data_manager.load_data()
         self.instances = self.data_manager.instances
-        self.classes = ArrayVar(value=self.data_manager.classes, transform=lambda e: e.classe)
+        self.classes = ArrayVar(value=self.data_manager.classes, transform=lambda e: e.classe + " - " + e.classe)
 
 
     def get_tkml(self):
@@ -41,6 +42,8 @@ class ClassManager(TkmlPage):
             self.data_manager.save_data()
         else:
             messagebox.showwarning("Sélection", "Veuillez sélectionner une classe à supprimer.")
+
+
 
 app = ClassManager(DataManager())
 

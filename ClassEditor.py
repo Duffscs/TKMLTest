@@ -11,10 +11,11 @@ class ClassEditor(TkmlPage):
         self._class = _class
         self.data_manager = data_manager
         self.properties = ArrayVar(value=self._class.properties if self._class else [], transform=lambda prop: f"{prop.id_property} ({prop.type})")
-        self.linked_classes = ArrayVar(value=self._class.connected_classes if self._class else [])
+        self.linked_classes = ArrayVar(value=self._class.connected_classes if self._class else [], transform=lambda classe: classe + " -" + classe)
         self.classe = tk.StringVar(value=self._class.classe if self._class else "")
         self.selected_property_index = tk.IntVar(value=-1)
-        self.selected_class_index = tk.IntVar(value=-1)
+        #self.selected_class_index = tk.IntVar(value=-1)
+
 
     def get_tkml(self):
         return """
@@ -29,7 +30,7 @@ class ClassEditor(TkmlPage):
 
             <!-- Section Classes Liées -->
             <Label text="Classes Liées:" row="1" column="1" sticky="w" />
-            <Listbox name="lb_classes" values="{Binding linked_classes}" selected_index="{Binding selected_class_index}" 
+            <Listbox name="lb_classes" values="{Binding linked_classes}" selected_indices="{Binding selected_class_index}" selectmode="multiple"
                 row="2" column="1" sticky="nsew" />
 
             <!-- Boutons -->

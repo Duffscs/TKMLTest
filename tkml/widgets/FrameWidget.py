@@ -5,5 +5,5 @@ import xml.etree.ElementTree as ET
 class FrameWidget(IWidget):
     name = 'frame'
 
-    def create(self, element : ET.Element, parent : tk.Tk | tk.Toplevel | tk.Frame):
+    def create(self, element : ET.Element, parent : tk.Tk):
         return tk.Frame(parent)
